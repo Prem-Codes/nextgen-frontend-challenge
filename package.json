@@ -11,13 +11,17 @@
     "lint": "run-s lint:js lint:css",
     "lint:js": "eslint --ext .js,.ts,.jsx,.tsx .",
     "lint:css": "stylelint **/*.scss **/*.css",
+    "lint:fix": "eslint --fix --ext .js,.ts,.jsx,.tsx .",
     "test": "jest"
   },
   "engines": {
     "node": ">=12.0.0",
     "npm": ">=6.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/react-router-dom": "^5.1.5",
+    "react-router-dom": "^5.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",

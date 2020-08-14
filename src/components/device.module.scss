@@ -2,8 +2,9 @@
 @import "../assets/styles/responsive.scss";
 
 .device {
-  max-width: 1200px;
-  overflow: auto;
+  max-width: 1270px;
+  overflow: visible;
+  //padding-top: 2rem;
 
   .headlines {
     padding-top: 40px;
@@ -23,17 +24,17 @@
     }
 
     .brand {
-      font-size: 2em;
+      font-size: 1em;
     }
 
     .terminal {
-      font-size: 3em;
+      font-size: 2em;
     }
   }
 
   .photo {
     text-align: center;
-    margin-top: -40px;
+    margin-top: 40px;
 
     img {
       max-width: 100%;
@@ -59,7 +60,7 @@
   }
 
   @include for-tablet-landscape-up {
-    margin: 0 auto;
+     //margin: 0 auto;
 
     .headlines {
       float: right;
@@ -73,9 +74,51 @@
     }
 
     .properties {
-      float: right;
-      width: 55%;
-      padding-top: 1em;
+      width: 100%;
+      text-align: center;
+      padding-top: 30em;
     }
+  }
+
+  .specificationshide {
+    display: none;
+  }
+
+  .specificationsshow {
+    border : 1px solid darkgray;
+    display: block;
+  }
+
+  .addToCartBtn {
+    margin: 1rem;
+    color: white;
+    background-color: #1fab2e;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 0;
+    padding: 1rem;
+    border-radius: 24px;
+    transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out, border 200ms ease-in-out;
+    white-space: nowrap;
+    outline: none;
+    cursor: pointer;
+    float: right;
+  }
+
+  .footer {
+    margin: .5rem;
+    color: white;
+    background-color: lightskyblue;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 0;
+    padding: .5rem;
+    border-radius: 24px;
+    transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out, border 200ms ease-in-out;
+    white-space: nowrap;
+    outline: none;
+    cursor: pointer;
   }
 }

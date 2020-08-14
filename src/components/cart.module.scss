@@ -1,0 +1,57 @@
+@import "../assets/styles/globals.scss";
+@import "../assets/styles/responsive.scss";
+
+.cartContainer {
+    margin-top: 5rem;
+    max-width: 90%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.checkoutContainer {
+    margin-top: 5rem;
+    max-width: 90%;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.cartContainerComponent{
+    background-color: #fff;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+    transition: box-shadow 150ms ease-in-out, background-color 150ms ease-in-out, border-color 150ms ease-in-out;
+    overflow: hidden
+}
+
+.cartBtns{
+    margin: 1rem;
+    cursor: pointer;
+    padding: .25rem;
+    background-color: white;
+    border-color: green;
+}
+
+.cartBtnsHide {
+    display: none;
+}
+
+.checkoutbtn {
+    margin: 1rem;
+    color: white;
+    background-color: #1fab2e;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 0;
+    padding: 1rem;
+    border-radius: 24px;
+    transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out, border 200ms ease-in-out;
+    white-space: nowrap;
+    outline: none;
+    cursor: pointer;
+    float: right;
+}

@@ -1,21 +1,20 @@
 import React, { ReactElement, Fragment, useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
-
+import { Filters } from "./filters";
 import largeHero from "../assets/photos/5349.jpg";
 import style from "./sample.module.scss";
 import { Spinner } from "./spinner";
-import { Device } from "./device";
 import * as Api from "../../types/api";
 
 export const Sample = (): ReactElement => {
-  const [data, setData] = useState<Api.Device>();
+  const [data, setData] = useState<Api.DeviceList[]>();
 
-  const renderDevice = (): ReactElement =>
-    !data ? <Spinner className={style.spinner} /> : <Device data={data} />;
+  const renderDeviceList = (): ReactElement =>
+    !data ? <Spinner className={style.spinner} /> : <Filters data={data} />;
 
   useEffect(() => {
-    axios("/api/device/379")
-      .then((result: AxiosResponse<Api.Device>) => {
+    axios("/api/device/list")
+      .then((result: AxiosResponse<Api.DeviceList[]>) => {
         setData(result?.data);
       })
       .catch((error) => {
@@ -30,7 +29,7 @@ export const Sample = (): ReactElement => {
         <img src={largeHero} />
       </header>
       <main className={style.main}>
-        <div className={style.gutter}>{renderDevice()}</div>
+        <div className={style.gutter}>{renderDeviceList()}</div>
       </main>
     </Fragment>
   );

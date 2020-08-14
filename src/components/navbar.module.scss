@@ -1,0 +1,25 @@
+@import "../assets/styles/globals.scss";
+@import "../assets/styles/responsive.scss";
+
+.navHeader {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: auto;
+      height: 3.5em;
+      background-color: #002219;
+      -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      z-index: 1004;
+      text-align: center;
+  }
+
+  .cartBtn {
+    float: right;
+    padding: .5rem;
+    margin: .5rem;
+  }

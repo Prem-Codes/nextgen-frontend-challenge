@@ -1,0 +1,22 @@
+@import "../assets/styles/globals.scss";
+@import "../assets/styles/responsive.scss";
+
+.devicefilters{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.devicefiltersbuttons{
+    padding: 1rem;
+    margin: .25rem;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+.resultcount{
+    font-size: 12px;
+    color: darkgray;
+    text-align: center;
+    margin-top: 1rem;
+}
