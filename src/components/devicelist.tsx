@@ -1,6 +1,5 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import React, { ReactElement } from "react";
 import style from "./devicelist.module.scss";
-import favorites from "../assets/icons/favorites-active.svg";
 import * as Api from "../../types/api";
 import { Link } from "react-router-dom";
 
@@ -9,8 +8,6 @@ type Props = {
 };
 
 export const DeviceList = ({ data }: Props): ReactElement => {
-  const [devicedata, setData] = useState<Api.Device>();
-
   return (
     <div className={style.devicelist}>
       {data.map((item) => (

@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import style from "./deviceimagegallery.module.scss";
 import leftarrow from "../assets/icons/arrow-left.svg";
 import rightarrow from "../assets/icons/arrow-right.svg";
 type IImage = {
-  imageUrls: [];
+  imageUrls: { image: string; imageAlt: string }[];
 };
 
 // Carousel component
-export const DeviceImageGallery = (imageUrl: IImage) => {
+export const DeviceImageGallery = (imageUrl: IImage): ReactElement => {
   const [state, setState] = useState({
     activeIndex: 0,
   });
 
-  const goToSlide = (index: any, slide: any) => {
+  const goToSlide = (
+    index: number,
+    slide: { image: string; imageAlt: string }
+  ) => {
     const x = slide;
     setState({
       activeIndex: index,
     });
   };
 
-  const goToPrevSlide = (e: any) => {
+  const goToPrevSlide = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     let index = state.activeIndex;
@@ -37,7 +40,7 @@ export const DeviceImageGallery = (imageUrl: IImage) => {
     });
   };
 
-  const goToNextSlide = (e: any) => {
+  const goToNextSlide = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     let index = state.activeIndex;
@@ -69,7 +72,7 @@ export const DeviceImageGallery = (imageUrl: IImage) => {
         </div>
 
         <ul className={style.carousel__slides}>
-          {imageUrl.imageUrls.map((slide: any, index: any) => (
+          {imageUrl.imageUrls.map((slide, index) => (
             <li
               key={index}
               className={style.carousel__slide}
@@ -100,7 +103,7 @@ export const DeviceImageGallery = (imageUrl: IImage) => {
         </div>
 
         <ul className={style.carousel__indicators}>
-          {imageUrl.imageUrls.map((slide: any, index: any) => (
+          {imageUrl.imageUrls.map((slide, index) => (
             <li key={index}>
               <a
                 onClick={() => goToSlide(index, slide)}

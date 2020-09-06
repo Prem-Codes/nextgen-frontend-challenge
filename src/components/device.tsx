@@ -8,7 +8,6 @@ import { DeviceImageGallery } from "./deviceimagegallery";
 import { Link } from "react-router-dom";
 
 type Props = {
-  //data?: Api.Device;
   id: string;
 };
 
@@ -18,11 +17,11 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
     showSpecifications: false,
     showDescription: false,
   });
-  const id = match.params.id as any;
+  const id = match.params.id;
 
   useEffect(() => {
     axios
-      .get(`api/device/${id}`, id)
+      .get(`api/device/${id}`, id as any)
       .then((result: AxiosResponse<Api.Device>) => {
         setData(result?.data);
       })
@@ -31,10 +30,6 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
         console.log(error);
       });
   }, []);
-
-  const variant = data?.variants?.find(
-    (variant) => variant.id === data?.featuredVariantId
-  );
 
   const specificationClick = () => {
     setShowDetails({
@@ -57,12 +52,12 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
   };
 
   const [device, setDevice] = useState({
-    ImageGallery: [] as any,
-    Color: null,
-    Size: null,
+    ImageGallery: [] as Array<{ image: string; imageAlt: string }>,
+    Color: "",
+    Size: "",
   });
 
-  const deviceImages = [] as Array<any>;
+  const deviceImages = [] as Array<{ image: string; imageAlt: string }>;
   {
     data?.variants.map((item) => {
       if (data.featuredVariantId == item.id) {
@@ -77,9 +72,9 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
     });
   }
 
-  const handleColorChange = (event: any) => {
+  const handleColorChange = (event: React.MouseEvent<HTMLLabelElement>) => {
     data?.variants.map((item) => {
-      if (item.color === event.target.value) {
+      if (item.color === (event.target as HTMLInputElement).value) {
         setDevice({
           ...device,
           ImageGallery: item.gallery
@@ -88,13 +83,13 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
               imageAlt: images.imageAlt,
             }))
             .concat({ image: item.image, imageAlt: item.imageAlt }),
-          Color: item.color as any,
+          Color: item.color,
         });
       }
-      if (item.size === event.target.value) {
+      if (item.size === (event.target as HTMLInputElement).value) {
         setDevice({
           ...device,
-          Size: item.size as any,
+          Size: item.size,
         });
       }
     });
@@ -103,11 +98,11 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
   const loadedGallery =
     device.ImageGallery.length != 0 ? device.ImageGallery : deviceImages;
   const defaultColor =
-    device.Color != null ? (device.Color as any) : data?.variants[0].color;
+    device.Color != null ? device.Color : data?.variants[0].color;
   const defaultSize =
-    device.Size != null ? (device.Size as any) : data?.variants[0].size;
+    device.Size != null ? device.Size : data?.variants[0].size;
 
-  const uniqueSizes = [] as Array<any>;
+  const uniqueSizes = [] as Array<string>;
   {
     data?.variants.map((item) => {
       if (uniqueSizes.indexOf(item.size) === -1) {
@@ -116,7 +111,7 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
     });
   }
 
-  const uniqueColors = [] as Array<any>;
+  const uniqueColors = [] as Array<string>;
   {
     data?.variants.map((item) => {
       if (uniqueColors.indexOf(item.color) === -1) {
@@ -167,8 +162,8 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
             <strong>VÆLG FARVE:</strong>
           </label>
           <br></br>
-          {uniqueColors.map((item) => (
-            <label key={item.id} onClick={handleColorChange}>
+          {uniqueColors.map((item, index) => (
+            <label key={index} onClick={handleColorChange}>
               <input
                 type="radio"
                 name="radio-mobile-color"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement } from "react";
 import { RouteComponentProps } from "react-router";
 import style from "./cart.module.scss";
 import { Link } from "react-router-dom";
@@ -8,10 +8,13 @@ type Props = {
   id: any;
 };
 
-export const Cart = ({ match, location }: RouteComponentProps<Props>) => {
+export const Cart = ({
+  match,
+  location,
+}: RouteComponentProps<Props>): ReactElement => {
   const [modal, showModal] = useState({ show: false });
   const device = location.state as any;
-  const id = match.params.id as any;
+  const id = match.params.id;
 
   const modalshow = () => {
     showModal({

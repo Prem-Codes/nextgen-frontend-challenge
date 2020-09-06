@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, ReactElement } from "react";
 import { DeviceList } from "./devicelist";
 import * as Api from "../../types/api";
 import style from "./filters.module.scss";
@@ -7,16 +7,16 @@ type Props = {
   data: Api.DeviceList[];
 };
 
-export const Filters = ({ data }: Props) => {
+export const Filters = ({ data }: Props): ReactElement => {
   const [state, setState] = useState({
     items: data,
     filter: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.MouseEvent<HTMLInputElement>) => {
     setState({
       ...state,
-      filter: e.target.value,
+      filter: (e.target as HTMLInputElement).value,
     });
   };
 
@@ -24,14 +24,12 @@ export const Filters = ({ data }: Props) => {
   let shownItems = items;
 
   if (filter != "Alle") {
-    shownItems = items.filter(({ brandName }: any) =>
-      brandName.includes(filter)
-    );
+    shownItems = items.filter(({ brandName }) => brandName.includes(filter));
   }
 
-  const uniqueBrands = [] as Array<any>;
+  const uniqueBrands = [] as Array<string>;
   {
-    items.map((newitem: any) => {
+    items.map((newitem: Api.DeviceList) => {
       if (uniqueBrands.indexOf(newitem.brandName) === -1) {
         uniqueBrands.push(newitem.brandName);
       }
@@ -53,7 +51,7 @@ export const Filters = ({ data }: Props) => {
           value="Alle"
           onClick={handleChange}
         />
-        {uniqueBrands.map((newitem: any) => {
+        {uniqueBrands.map((newitem: string) => {
           return (
             <input
               className={style.devicefiltersbuttons}
@@ -62,7 +60,7 @@ export const Filters = ({ data }: Props) => {
                   state.filter == newitem ? "lightskyblue" : "white",
               }}
               type="button"
-              key={newitem.id}
+              key={newitem}
               value={newitem}
               onClick={handleChange}
             />
