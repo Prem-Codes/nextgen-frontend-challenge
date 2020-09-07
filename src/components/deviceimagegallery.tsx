@@ -12,11 +12,7 @@ export const DeviceImageGallery = (imageUrl: IImage): ReactElement => {
     activeIndex: 0,
   });
 
-  const goToSlide = (
-    index: number,
-    slide: { image: string; imageAlt: string }
-  ) => {
-    const x = slide;
+  const goToSlide = (index: number) => {
     setState({
       activeIndex: index,
     });
@@ -103,10 +99,10 @@ export const DeviceImageGallery = (imageUrl: IImage): ReactElement => {
         </div>
 
         <ul className={style.carousel__indicators}>
-          {imageUrl.imageUrls.map((slide, index) => (
+          {imageUrl.imageUrls.map((_slide, index) => (
             <li key={index}>
               <a
-                onClick={() => goToSlide(index, slide)}
+                onClick={() => goToSlide(index)}
                 className={style.carousel__indicator}
                 style={{ display: index == state.activeIndex ? "block" : "" }}
               />

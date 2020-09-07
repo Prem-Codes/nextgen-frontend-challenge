@@ -4,8 +4,7 @@ import style from "./cart.module.scss";
 import { Link } from "react-router-dom";
 
 type Props = {
-  device: any;
-  id: any;
+  id: string;
 };
 
 export const Cart = ({

@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import style from "./device.module.scss";
 //import favorites from "../assets/icons/favorites-active.svg";
 import * as Api from "../../types/api";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { RouteComponentProps } from "react-router";
 import { DeviceImageGallery } from "./deviceimagegallery";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
 
   useEffect(() => {
     axios
-      .get(`api/device/${id}`, id as any)
+      .get(`api/device/${id}`, id as AxiosRequestConfig)
       .then((result: AxiosResponse<Api.Device>) => {
         setData(result?.data);
       })
@@ -238,7 +238,9 @@ export const Device = ({ match }: RouteComponentProps<Props>): ReactElement => {
         >
           <p
             className={style.description}
-            dangerouslySetInnerHTML={{ __html: data?.descriptionHtml as any }}
+            dangerouslySetInnerHTML={{
+              __html: data?.descriptionHtml as string,
+            }}
           />
         </div>
       </div>
